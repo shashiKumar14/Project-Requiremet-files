@@ -1,0 +1,141 @@
+Here’s a **clear, beginner‑friendly explanation** of what each *RAGAS* metric means. These metrics are used to evaluate Retrieval‑Augmented Generation (RAG) systems.
+
+***
+
+# 🔍 **RAGAS Metrics Explained (Simple + Practical)**
+
+RAGAS provides five key metrics:
+
+1.  **Faithfulness**
+2.  **Answer Correctness**
+3.  **Answer Relevance**
+4.  **Context Precision**
+5.  **Context Recall**
+
+These metrics together evaluate the **retriever**, **generator**, and **overall RAG quality**.
+
+***
+
+# 1️⃣ **Faithfulness**
+
+**Purpose:**  
+Measures whether the **answer is grounded in the retrieved context**, i.e., no hallucinations.
+
+**Meaning:**
+
+*   Score = 1 → Answer is fully supported by retrieved documents
+*   Score = 0 → Answer contains hallucinations OR unsupported statements
+
+**Example:**  
+Context says: “Azure Functions is a serverless compute service.”  
+Answer: “Azure Functions is a serverless compute service.”  
+→ **Faithfulness = High**
+
+If your answer mentions something NOT in the context → **Low faithfulness**.
+
+***
+
+# 2️⃣ **Answer Correctness**
+
+**Purpose:**  
+Checks if the **generated answer matches ground‑truth answers**.
+
+**Meaning:**
+
+*   Measures semantic similarity between answer and official truth.
+*   Evaluates whether the model answered correctly based on known ground truth.
+
+**Example:**  
+Ground truth: “Ashish Vaswani et al.”  
+Answer: “It was written by Ashish Vaswani and colleagues.”  
+→ **Correctness = High** (same meaning)
+
+If answer is wrong → correctness is low.
+
+***
+
+# 3️⃣ **Answer Relevance**
+
+**Purpose:**  
+Measures whether the **answer is relevant to the question asked**.
+
+**Meaning:**
+
+*   Even if the answer is correct factually, it must address the question.
+
+**Example:**  
+Question: “What is Azure Functions?”  
+Answer: “Azure Functions is a serverless compute service.”  
+→ Relevant.
+
+If answer goes off-topic  
+→ **low relevance.**
+
+***
+
+# 4️⃣ **Context Precision** (Retriever metric)
+
+**Purpose:**  
+Measures how many of the **retrieved contexts are actually helpful** for answering the question.
+
+**Meaning:**
+
+*   Precision = Relevant\_contexts / Retrieved\_contexts
+
+**Example:**  
+Retrieved 3 context chunks  
+Only 2 are useful  
+→ precision = 2/3 = 0.66
+
+High precision → your **retriever is bringing focused and correct documents**.
+
+***
+
+# 5️⃣ **Context Recall** (Retriever metric)
+
+**Purpose:**  
+Measures whether the retriever **found ALL necessary information** required to answer the question.
+
+**Meaning:**
+
+*   Recall = Relevant\_contexts\_found / Relevant\_contexts\_available
+
+**Example:**  
+If 3 relevant documents exist in the system  
+Retriever fetched only 1  
+→ recall = 1/3 = 0.33
+
+High recall → retriever captured enough context to answer the question.
+
+***
+
+# 🧠 Summary Table
+
+| Metric                 | Evaluates | Meaning                                      |
+| ---------------------- | --------- | -------------------------------------------- |
+| **Faithfulness**       | Generator | Is the answer supported by context?          |
+| **Answer Correctness** | Generator | Is the answer correct vs ground truth?       |
+| **Answer Relevance**   | Generator | Does the answer match the question’s intent? |
+| **Context Precision**  | Retriever | Are retrieved documents relevant?            |
+| **Context Recall**     | Retriever | Did retriever fetch all needed docs?         |
+
+***
+
+# 🎯 In Simple Terms
+
+*   **Faithfulness = no hallucinations**
+*   **Answer Correctness = matches ground truth**
+*   **Answer Relevance = on-topic answer**
+*   **Context Precision = retriever didn’t bring junk**
+*   **Context Recall = retriever brought enough good stuff**
+
+***
+Common Metrics
+
+Metric                                Meaning
+Recall@k                              Are the correct documents in top‑k retrieved?
+Precision@k                           Are the top‑k retrieved documents relevant?
+MRR (Mean Reciprocal Rank)            How early does the correct document appear?
+nDCG                                  Measures ranking quality of retrieved documents.
+
+
